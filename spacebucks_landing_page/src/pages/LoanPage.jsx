@@ -1,9 +1,11 @@
-import React from "react";
+import React , { useState } from "react";
 import Logo from "../assets/spacebucks submark.png"
 
 
 // Placeholder menu icon (hamburger icon)
 function MenuIcon() {
+
+  
   return (
     <svg
       className="h-6 w-6 text-gray-700"
@@ -18,8 +20,25 @@ function MenuIcon() {
 }
 
 export default function LoanPage() {
+
+ 
+  const [position, setPosition] = useState({ x: 50, y: 50 });
+
+  const handleMouseMove = (e) => {
+    const { innerWidth, innerHeight } = window;
+    const x = (e.clientX / innerWidth) * 100;
+    const y = (e.clientY / innerHeight) * 100;
+    setPosition({ x, y });
+  };
+
   return (
-    <div className="min-h-screen flex flex-col bg-gray-900 text-gray-200">
+    <div className="min-h-screen bg-gray-900 text-gray-200" onMouseMove={handleMouseMove} style={{
+      background: `radial-gradient(
+        at ${position.x}% ${position.y}%,
+rgb(6, 24, 73),
+rgb(3, 1, 24)
+      )`,
+    }}>
       {/* Header */}
       <header className="flex items-center justify-between p-4 border-b">
         <div className="flex items-center space-x-2">
